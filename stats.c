@@ -41,3 +41,54 @@ void main() {
 }
 
 /* Add other Implementation File Code Here */
+void print_statistics(unsigned char tab[])
+{
+
+}
+void print_array(unsigned char tab[], unsigned char* l)
+{
+
+}
+unsigned char find_median(unsigned char tab[], unsigned char* l)
+{
+
+}
+unsigned char find_median(unsigned char tab[], unsigned char* l)
+{
+
+}
+unsigned char find_maximum(unsigned char tab[], unsigned char* l)
+{
+
+}
+unsigned char find_minimum(unsigned char tab[], unsigned char* l)
+{
+
+}
+void sort_array(unsigned char tab[], unsigned char* l)
+{
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
