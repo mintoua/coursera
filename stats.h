@@ -22,7 +22,7 @@
 #define __STATS_H__
 
 /* Add Your Declarations and Function Comments here */ 
-void print_statistics(unsigned char tab[]);
+void print_statistics(unsigned char tab[], unsigned char*l);
 /**
  *@brief <A function that prints the statistics of an array including minimum, maximum, mean, and median.>
  * @param <unsigned char tab[]> <array of data>
