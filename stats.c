@@ -2,20 +2,28 @@
  * Copyright (C) 2017 by Alex Fosdick - University of Colorado
  *
  * Redistribution, modification or use of this software in source or binary
- * forms is permitted as long as the files maintain this copyright. Users are 
+ * forms is permitted as long as the files maintain this copyright. Users are
  * permitted to modify this and use it to learn about the field of embedded
  * software. Alex Fosdick and the University of Colorado are not liable for any
- * misuse of this material. 
+ * misuse of this material.
  *
  *****************************************************************************/
 /**
- * @file <stats.c> 
- * @brief <Calcul of statistics >
+ * @file stats.c
+ * @brief implementation of functions.
  *
- * <Add Extended Description Here>
+ * functions:
+ * @main()
+ * @find_median()
+ * @find_mean()
+ * @find_maximum()
+ * @find_minimum()
+ * @sort_aray()
+ * @print_array()
+ * @print_statistics()
  *
- * @author <MIntoua Toupkandi>
- * @date <05-07-2020>
+ * @author Omar Ashraf Mohamed
+ * @date 05/07/2020
  *
  */
 
@@ -27,133 +35,166 @@
 /* Size of the Data Set */
 #define SIZE (40)
 
-void main() {
+int main(int argc, char *argv[]) {
 
-  unsigned char l = SIZE;
   unsigned char test[SIZE] = { 34, 201, 190, 154,   8, 194,   2,   6,
                               114, 88,   45,  76, 123,  87,  25,  23,
                               200, 122, 150, 90,   92,  87, 177, 244,
                               201,   6,  12,  60,   8,   2,   5,  67,
                                 7,  87, 250, 230,  99,   3, 100,  90};
 
-  /* Other Variable Declarations Go Here */
+  double mean;
+  double median;
+  unsigned char max_element;
+  unsigned char min_element;
+  unsigned char *sorted_array;
 
-  /* Statistics and Printing Functions Go Here */
-print_statistics(test,&l);
 
-}
+  mean = find_mean(test, SIZE);
+  median = find_median(test, SIZE);
+  max_element = find_maximum(test, SIZE);
+  min_element = find_minimum(test, SIZE);
+  sorted_array = sort_array(test, SIZE);
 
-/* Add other Implementation File Code Here */
-void print_statistics(unsigned char tab[], unsigned char*l)
-{
-unsigned char c;
-c=find_median(tab,l);
-   printf("the median: %c",c);
-unsigned char t;
-t=find_mean(tab,l);
-   printf("the mean: %c",t);
-unsigned char d;
-d=find_maximum(tab,l);
-   printf("the median: %c",d);
-unsigned char max;
-max=find_minimum(tab,l);
-   printf("the median: %c",max);
+  print_array(test, SIZE);
+  printf("\nsorted array is:\n");
+  int i;
+  for(i = 0; i < SIZE; i++){
 
-print_array(tab,l);
-}
-void print_array(unsigned char tab[], unsigned char* l)
-{int i;
-	for (i=0;i<(*l);i++)
-		{
-		   printf("Array [%d]= %c",i,*l);
+    printf("%d\t", sorted_array[i]);
 
-		}
-}
-unsigned char find_median(unsigned char tab[], unsigned char* l)
-{
-    // First we sort the array 
-     
-  	sort_array(tab,l);
-    // check for even case 
-    if (*l % 2 != 0) 
-       return tab[*l/2]; 
-      
-    return (tab[(*l-1)/2] + tab[*l/2])/2.0;
-}
-unsigned char find_mean(unsigned char tab[], unsigned char* l)
-{
- unsigned char sum = 0; 
-    for (int i = 0; i < *l; i++)  
-        sum += tab[i]; 
-      
-    return sum/(*l);
-}
-unsigned char find_maximum(unsigned char tab[], unsigned char* l)
-{
-unsigned char maximum = tab[0];
-int c;
-  for (c = 1; c < (*l); c++)
-  {
-    if (tab[c] > maximum)
-    {
-       maximum  = tab[c];
-    }
   }
+  printf("\nmean of array is: %.2f \n\n", mean);
+  printf("median of array is: %.2f \n\n", median);
+  printf("maximum element of array is: %d \n\n", max_element);
+  printf("minimum element of array is: %d \n\n", min_element);
+  print_statistics(test, SIZE);
 
-return maximum;
+
+  return 0;
 }
-unsigned char find_minimum(unsigned char tab[], unsigned char* l)
-{
-unsigned char minimum = tab[0];
- int c;
-    for ( c = 1 ; c < (*l) ; c++ ) 
-    {
-        if ( tab[c] < minimum ) 
-        {
-           minimum = tab[c];
-        }
+
+/** functiion definitioins**/
+
+/* definition of print_statistics() function*/
+
+void print_statistics(unsigned char myArray[], int length){
+
+     double mean;
+     double median;
+     unsigned char max_element;
+     unsigned char min_element;
+     unsigned char *sorted_array;
+
+     sorted_array = sort_array(myArray, length);
+     mean = find_mean(myArray, length);
+     median = find_median(myArray, length);
+     max_element = sorted_array[0];
+     min_element = sorted_array[length - 1];
+
+
+     printf("statistics of array are:\n");
+     printf("mean: %.2f  median: %.2f  maximum: %d  minimum: %d \n", mean, median, max_element, min_element);
+
+
+}
+
+/* definition of find_median() function*/
+
+double find_median(unsigned char myArray[], int length){
+
+     int mid_index1;
+     int mid_index2;
+     unsigned char *sorted_array;
+     unsigned char mid_element1;
+     unsigned char mid_element2;
+     double median;
+
+     mid_index1 = SIZE / 2;
+     mid_index2 = mid_index1 + 1;
+     sorted_array = sort_array(myArray, length);
+     mid_element1 = sorted_array[mid_index1];
+     mid_element2 = sorted_array[mid_index2];
+
+     median = (mid_element1 + mid_element2) / 2;
+
+     return median;
+
+}
+
+/* definition of find_mean() function*/
+
+double find_mean(unsigned char myArray[], int length){
+     int i;
+     double mean;
+     double sum;
+     sum = 0;
+     for(i = 0; i < SIZE; i++){
+     sum += myArray[i];
+
+     }
+
+     mean = sum / SIZE;
+     return mean;
+
+}
+
+/* definition of find_maximum() function*/
+
+unsigned char find_maximum(unsigned char myArray[], int length){
+       unsigned char *sorted_array;
+       unsigned char max_element;
+       /* sort the array in decending order*/
+       sorted_array = sort_array(myArray, SIZE);
+       max_element = sorted_array[0];
+
+       return max_element;
+}
+
+/* definition of find_minimum() function*/
+
+unsigned char find_minimum(unsigned char myArray[], int length){
+       unsigned char *sorted_array;
+       unsigned char min_element;
+       /* sort the array in decending order*/
+       sorted_array = sort_array(myArray, SIZE);
+       min_element = sorted_array[SIZE - 1];
+
+       return min_element;
+
+}
+
+/* definition of sort_array() function*/
+
+unsigned char *sort_array(unsigned char myArray[], int length){
+      int i;
+      int j;
+      int temp;
+      for(i = 0; i < length; i++){
+
+         for(j = i+1; j < length; j++){
+
+            if(myArray[i] < myArray[j]){
+
+            temp = myArray[i];
+            myArray[i] = myArray[j];
+            myArray[j] = temp;
+            }
+         }
+      }
+
+      return myArray;
+}
+
+/* definition of print_array() function*/
+
+void print_array(unsigned char myArray[], int length){
+    int i;
+    printf("The contents of array are:\n");
+    for(i = 0; i < SIZE; i++){
+    printf("%d\t", myArray[i]);
+
     }
 
-return minimum; 
 }
-void  sort_array(unsigned char tab[], unsigned char* l)
-{
-int i,j;
-unsigned char a;
-      for (i = 0; i < (*l); ++i) 
-        {
-            for (j = i + 1; j < (*l) ; ++j) 
-            {
-                if (tab[i] < tab[j]) 
-                {
-                    a = tab[i];
-                    tab[i] = tab[j];
-                    tab[j] = a;
-                }
-            }
-        }
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

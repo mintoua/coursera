@@ -1,108 +1,117 @@
-/******************************************************************************
- * Copyright (C) 2017 by Alex Fosdick - University of Colorado
- *
- * Redistribution, modification or use of this software in source or binary
- * forms is permitted as long as the files maintain this copyright. Users are 
- * permitted to modify this and use it to learn about the field of embedded
- * software. Alex Fosdick and the University of Colorado are not liable for any
- * misuse of this material. 
- *
- *****************************************************************************/
 /**
- * @file <stats.h> 
- * @brief <Header file for prototypes of stats.c>
+ * @file: stats.h
+ * @brief header file, contains declaration and documentation for the functions from stats.c file
  *
- * <Add Extended Description Here>
  *
- * @author <Mintoua Toupkandi>
- * @date <Add date >
  *
- */	
+ * @author: Mintoua TOupkandi
+ * @date: 05/07/2020
+ *
+ */
 #ifndef __STATS_H__
 #define __STATS_H__
 
-/* Add Your Declarations and Function Comments here */ 
-void print_statistics(unsigned char tab[], unsigned char*l);
-/**
- *@brief <A function that prints the statistics of an array including minimum, maximum, mean, and median.>
- * @param <unsigned char tab[]> <array of data>
- *@return <void nothing to return>
-*/
-
-void print_array(unsigned char tab[], unsigned char* l);
-/**
- * @brief <name print_array>
+/**  declaration of find_median() function
+ * @brief calculates the median of array
  *
- * <Given an array of data and a length, prints the array to the screen>
+ * This function takes an array of data and array length as inputs. The function will
+ * compute the median of input array and return the median as output.
+ * @param myArray[] array of data
+ * @param length    length of input array
+ * @return the computed median of array
  *
- * @param <unsigned char tab[]> <data of array>
- * @param <unisgned int l> <length of the array>
-
- *
- * @return <void nothing to return >
  */
 
-unsigned char find_median(unsigned char tab[], unsigned char* l);
-/**
- * @brief <name find_median>
- *
- * <Given an array of data and a length, returns the median value>
- *
- * @param <unsigned char tab[]> <data of array>
- * @param <unisgned int l> <length of the array>
+double find_median(unsigned char myArray[], int length);
 
+/**  declaration of find_mean() function
+ * @brief calculates the mean of array
  *
- * @return < return unsigned char the median>
- */
-unsigned char find_mean(unsigned char tab[], unsigned char* l);
-/**
- * @brief <name find_mean>
+ * This function takes as input an array of data and array length as inputs. The function will
+ * compute the mean of input array and return the mean as output.
+ * @param myArray[] array of data
+ * @param length    length of input array
+ * @return the computed mean of array
  *
- * <Given an array of data and a length, returns the mean >
- *
- * @param <unsigned char tab[]> <data of array>
- * @param <unisgned int l> <length of the array>
-
- *
- * @return < return unsigned char the mean>
- */
-unsigned char find_maximum(unsigned char tab[], unsigned char* l);
-/**
- * @brief <name find_maximum>
- *
- * <Given an array of data and a length, returns the maximum>
- *
- * @param <unsigned char tab[]> <data of array>
- * @param <unisgned int l> <length of the array>
-
- *
- * @return < return unsigned char the maximum>
- */
-unsigned char find_minimum(unsigned char tab[], unsigned char* l);
-/**
- * @brief <name find_minimum>
- *
- * <Given an array of data and a length, returns the minimum>
- *
- * @param <unsigned char tab[]> <data of array>
- * @param <unisgned int l> <length of the array>
-
- *
- * @return < return unsigned char the minimum>
- */
-void sort_array(unsigned char tab[], unsigned char* l);
-/**
- * @brief <name sort_array>
- *
- * <Given an array of data and a length, sorts the array largest to smallest>
- *
- * @param <unsigned char tab[]> <data of array>
- * @param <unisgned int l> <length of the array>
-
- *
- * @return < return nothing : void>
  */
 
+double find_mean(unsigned char myArray[], int length);
+
+
+/**    declaration of find_maximum() function
+ *
+ * @brief calculates the maximum of array
+ *
+ * This function takes as input an array of data and array length as inputs. The function will
+ * find the maximum of input array and return the maximum as output float
+ * @param myArray[] array of data
+ * @param length    length of input array
+ * @return the maximum element of array
+ *
+ */
+
+unsigned char find_maximum(unsigned char myArray[], int length);
+
+
+/**  declaration of find_minimum() function
+ *
+ * @brief finds the minimum element of array
+ *
+ * This function takes  an array of data and array length as inputs. The function will
+ * find the minimum of input array and return the minimum output
+ * @param myArray[] array of data
+ * @param length    length of input array
+ * @return the minimum element of array
+ *
+ */
+
+unsigned char find_minimum(unsigned char myArray[], int length);
+
+
+/**   declaration of sort_array() function
+ *
+ * @brief sorts the array from largest to smallest element.
+ *
+ * This function takes  an array of data and array length as inputs. The function will
+ * sort the elements of array from largest to smallest, e.g the zeroth element should be
+ * largest value and the last element should be the smallest value.
+ * @param myArray[] array of data
+ * @param length    length of input array
+ * @return a pointer to array.
+ *
+ */
+
+unsigned char *sort_array(unsigned char myArray[], int length);
+
+
+/**   declaration of print_statistics() function
+ *
+ * @brief prints the statistics of array.
+ *
+ * This function takes  an array of data and array length as inputs. The function will
+ * print the statistics of array including, median, mean, minimum and maximum.
+ * @param myArray[] array of data
+ * @param length    length of input array
+ *
+ *
+ */
+
+void print_statistics(unsigned char myArray[], int length);
+
+
+/**   declaration of print_array() function
+ *
+ * @brief prints the contents of array.
+ *
+ * This function takes  an array of data and array length as inputs. The function will
+ * print the contents of array.
+ * @param myArray[] array of data
+ * @param length    length of input array
+ *
+ */
+
+void print_array(unsigned char myArray[], int length);
 
 
 #endif /* __STATS_H__ */
+
